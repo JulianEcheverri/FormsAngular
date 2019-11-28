@@ -1,0 +1,41 @@
+<h4>Formularios <small>template</small></h4>
+<hr>
+
+<form novalidate="" (ngSubmit)="guardar(ft)" #ft="ngForm">
+    <div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre</label>
+            <div class="col-8">
+                <!-- se usa [ngModel] solo esta recibiendo la informacion -->
+                <!-- se usa [(ngModel)] recibe informacion y la cambia -->
+                <input class="form-control" type="text" placeholder="Nombre" name="nombre" [ngModel]="usuario.nombre" required minlength="5">
+                <!-- ng-untouched  = que el usuario no ha tocado el input -->
+                <!-- pristine  = cuando se este con valor por defecto -->
+                <!-- ng-valid  = es valido-->
+                <!-- ng-dirty  = cambio valor-->
+                <!-- ng-touched  = input modificado y sale del form-->
+                <!-- ng-invalid = si es invalido -->
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Apellido</label>
+            <div class="col-8">
+                <input class="form-control" type="text" placeholder="Apellido" [ngModel]="usuario.apellido" name="apellido">
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Correo</label>
+        <div class="col-md-8">
+            <input class="form-control" type="email" placeholder="Correo electrónico" name="correo" [ngModel]="usuario.correo" required>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-8">
+            <button type="submit" class="btn btn-outline-primary">
+        Guardar
+      </button>
+        </div>
+    </div>
+</form>
