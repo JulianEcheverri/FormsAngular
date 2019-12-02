@@ -1,37 +1,34 @@
 <h4>Formularios <small>data</small></h4>
 <hr>
-<form>
-
-    <div>
-
+<!-- // para asociarlo en el template se hace con la relacion de la propiedad [formGroup] = "formulario" -->
+<form [formGroup]="formulario" (ngSubmit)="guardarCambios()">
+    <div formGroupName="nombrecompleto">
         <div class="form-group row">
             <label class="col-2 col-form-label">Nombre</label>
             <div class="col-8">
-
-                <input class="form-control" type="text" placeholder="Nombre">
+                <!-- [ngClass]="{'is-invalid' : !formulario.get('nombre').valid  }" -->
+                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre" [ngClass]="{'is-invalid' : !formulario.controls['nombrecompleto'].controls['nombre'].valid  }">
+                <div *ngIf="formulario.get('nombrecompleto.nombre').errors?.required" class="form-control-feedback">
+                    Por favor ingresar un nombre
+                </div>
+                <div *ngIf="formulario.get('nombrecompleto.nombre').errors?.minlength" class="form-control-feedback">
+                    Debe tener al menos 3 letras
+                </div>
             </div>
         </div>
-
         <div class="form-group row">
             <label class="col-2 col-form-label">Apellido</label>
             <div class="col-8">
-
-                <input class="form-control" type="text" placeholder="Apellido">
+                <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido">
             </div>
         </div>
-
     </div>
-
     <div class="form-group row">
         <label class="col-2 col-form-label">Correo</label>
         <div class="col-md-8">
-
-            <input class="form-control" type="email" placeholder="Correo electrónico">
+            <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="correo">
         </div>
     </div>
-
-
-
     <div class="form-group row">
         <label class="col-2 col-form-label">&nbsp;</label>
         <div class="input-group col-md-8">
@@ -40,5 +37,6 @@
       </button>
         </div>
     </div>
-
 </form>
+
+{{formulario.valid}}
